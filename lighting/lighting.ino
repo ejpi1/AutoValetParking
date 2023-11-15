@@ -3,7 +3,7 @@
 void setup() {
   // put your setup code here, to run once:
   pinMode(LEDPIN, OUTPUT);
-  digitalwrite(LEDPIN, HIGH);
+  digitalWrite(LEDPIN, HIGH);
 }
 
 void loop() {

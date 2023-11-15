@@ -27,13 +27,11 @@ void loop(){
       digitalWrite(IN2Pin, LOW);
       digitalWrite(IN3Pin, HIGH);
       digitalWrite(IN4Pin, LOW);
-      delay(1000);
     }else if(in_data == 'w'){	//전진
       digitalWrite(IN1Pin, LOW);
       digitalWrite(IN2Pin, HIGH);
       digitalWrite(IN3Pin, LOW);
       digitalWrite(IN4Pin, HIGH);
-      delay(1000);
     }else if(in_data == 'd'){	//우회전
       digitalWrite(IN1Pin, HIGH);
       digitalWrite(IN2Pin, LOW);

@@ -1,9 +1,9 @@
-int IN1Pin = 8;
-int IN2Pin = 7;
-int IN3Pin = 2;
-int IN4Pin = 4;
-int ENAPin = 6;
-int ENBPin = 3;
+int IN1Pin = 13;
+int IN2Pin = 12;
+int IN3Pin = 11;
+int IN4Pin = 10;
+int ENAPin = A0;
+int ENBPin = A1;
 void setup() {
   Serial.begin(9600);
   pinMode(IN1Pin, OUTPUT);

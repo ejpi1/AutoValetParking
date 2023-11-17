@@ -1,9 +1,11 @@
+#define PWM_CONSTANT 200
+
 int IN1Pin = 13;
 int IN2Pin = 12;
-int IN3Pin = 11;
-int IN4Pin = 10;
-int ENAPin = A0;
-int ENBPin = A1;
+int IN3Pin = 8;
+int IN4Pin = 7;
+int ENAPin = 11;
+int ENBPin = 10;
 
 char in_data;					//입력된 데이터 저장을 위한 변수
 
@@ -13,8 +15,8 @@ void setup(){
   pinMode(IN2Pin, OUTPUT);
   pinMode(IN3Pin, OUTPUT);
   pinMode(IN4Pin, OUTPUT);
-  analogWrite(ENAPin, 255);
-  analogWrite(ENBPin, 255);
+  analogWrite(ENAPin, PWM_CONSTANT);
+  analogWrite(ENBPin, PWM_CONSTANT);
 }
 
 void loop(){

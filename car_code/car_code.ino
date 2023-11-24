@@ -14,9 +14,10 @@ SoftwareSerial hc06(2, 3);  // RX:2, TX:3
 AltSoftSerial hc05;         // RX:8, TX:9, 10번 pin에서 PWM 못씀! 그냥 입출력은 가능
                             // AltSoftSerial은 write()에서 문제있음
 
-char val; // 블루투스로부터 데이터 수신
-char car_move; // 차를 움직이는 블루투스가 읽는 값
+char serial_data; // Serial Monitor로부터 데이터 수신
+char car_move = 0; // 차를 움직이는 블루투스가 읽는 값
 float time_intvl, distance; // 초음파 센서 시간 간격, 거리
+uint16_t counter = 0;
 
 void setup(){
   pinMode(trig, OUTPUT);
@@ -31,11 +32,23 @@ void setup(){
   analogWrite(ENAPin, PWM);
   analogWrite(ENBPin, PWM);
 }
+
 void loop() {
   drive();
   communicate();
-  // us_stop();
-  dist_measure();
+  // 주석 해제 시 거리 감지 제동 활성화
+  us_stop();
+
+  if(counter == 10){
+    dist_measure();
+    // dist_measuring_debug();
+    counter = 0;
+  }
+  counter++;
+  // Serial.print("counter: ");
+  // Serial.print(counter);
+  // Serial.print("car_move: ");
+  // Serial.println(car_move);
 }
 
 void drive(){               // 'a', 'd', 's', 'w'에 따라 차량 움직임
@@ -68,11 +81,8 @@ void drive(){               // 'a', 'd', 's', 'w'에 따라 차량 움직임
 }
 
 void us_stop(){                 // 초음파 거리가 일정 미만이면 차량 정지
-  if(distance < 15){
-    digitalWrite(IN1Pin, HIGH);
-    digitalWrite(IN2Pin, HIGH);
-    digitalWrite(IN3Pin, HIGH);
-    digitalWrite(IN4Pin, HIGH);
+  if((distance < 15) && (distance > 1)){
+    car_move = 'x';
   }
 }
 
@@ -84,27 +94,27 @@ void dist_measure(){            // 초음파 거리재기
   digitalWrite(trig,LOW);
   time_intvl = pulseIn(echo, HIGH);
   distance = ((340*time_intvl)/10000)/2;
-  //디버깅을 위해서 아래 주석처리 해제
-  /*
+}
+
+void dist_measuring_debug(){
   Serial.print(distance);
-  Serial.println("cm");
-  */
+  Serial.print("cm");
 }
 
 void communicate(){
   while(hc05.available()){
     car_move = hc05.read();
-    Serial.write(car_move);
+    // Serial.write(car_move);
   }
 
   while(hc06.available()){
     car_move = hc06.read();
-    Serial.write(car_move);
+    // Serial.write(car_move);
   }
 
-  while(Serial.available()){
-    val = Serial.read();
-    hc05.print(val);
-    hc06.print(val);
-  }
+  // while(Serial.available()){
+  //   serial_data = Serial.read();
+  //   hc05.print(serial_data);
+  //   hc06.print(serial_data);
+  // }
 }

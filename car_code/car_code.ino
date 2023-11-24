@@ -2,10 +2,10 @@
 #include <AltSoftSerial.h>
 #define trig 5
 #define echo 4
-#define IN1Pin 13       // 우륜 전진
-#define IN2Pin 12       // 우륜 후진
-#define IN3Pin 10       // 좌륜 전진
-#define IN4Pin 7        // 좌륜 후진
+#define IN1Pin 13       // LOW일 때 우륜 전진
+#define IN2Pin 12       // LOW일 때 우륜 후진
+#define IN3Pin 10       // LOW일 때 좌륜 전진
+#define IN4Pin 7        // LOW일 때 좌륜 후진
 #define ENAPin 11       // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
 #define ENBPin 6        // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
 #define PWM 255         // 모터 속도 pwm 제어, 0-255
@@ -40,15 +40,15 @@ void loop() {
 
 void drive(){               // 'a', 'd', 's', 'w'에 따라 차량 움직임
   if(car_move == 'w'){
-    digitalWrite(IN1Pin, HIGH);
-    digitalWrite(IN2Pin, LOW);
-    digitalWrite(IN3Pin, HIGH);
-    digitalWrite(IN4Pin, LOW);
-  }else if(car_move == 's'){
     digitalWrite(IN1Pin, LOW);
     digitalWrite(IN2Pin, HIGH);
     digitalWrite(IN3Pin, LOW);
     digitalWrite(IN4Pin, HIGH);
+  }else if(car_move == 's'){
+    digitalWrite(IN1Pin, HIGH);
+    digitalWrite(IN2Pin, LOW);
+    digitalWrite(IN3Pin, HIGH);
+    digitalWrite(IN4Pin, LOW);
   }else if(car_move == 'd'){
     digitalWrite(IN1Pin, HIGH);
     digitalWrite(IN2Pin, LOW);

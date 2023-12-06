@@ -8,7 +8,7 @@
 #define IN4Pin 7        // LOW일 때 좌륜 후진
 #define ENAPin 11       // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
 #define ENBPin 6        // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
-#define PWM 200         // 모터 속도 pwm 제어, 0-255
+#define PWM 255         // 모터 속도 pwm 제어, 0-255
 
 SoftwareSerial hc06(2, 3);  // RX:2, TX:3
 AltSoftSerial hc05;         // RX:8, TX:9, 10번 pin에서 PWM 못씀! 그냥 입출력은 가능

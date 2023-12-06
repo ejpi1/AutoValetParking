@@ -10,5 +10,5 @@ void dist_measure(){            // 초음파 거리재기
 
 void dist_measuring_debug(){
   Serial.print(distance);
-  Serial.print("cm");
+  Serial.println("cm");
 }

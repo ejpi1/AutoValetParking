@@ -8,7 +8,8 @@
 #define IN4Pin 7        // LOW일 때 좌륜 후진
 #define ENAPin 11       // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
 #define ENBPin 6        // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
-#define PWM 255         // 모터 속도 pwm 제어, 0-255
+#define PWM_forward 100 // 전진, 후진 시 PWM
+#define PWM_turn 255    // 회전 시 PWM
 
 SoftwareSerial hc06(2, 3);  // RX:2, TX:3
 AltSoftSerial hc05;         // RX:8, TX:9, 10번 pin에서 PWM 못씀! 그냥 입출력은 가능
@@ -29,8 +30,6 @@ void setup(){
   pinMode(IN2Pin, OUTPUT);
   pinMode(IN3Pin, OUTPUT);
   pinMode(IN4Pin, OUTPUT);
-  analogWrite(ENAPin, PWM);
-  analogWrite(ENBPin, PWM);
 }
 
 void loop() {
@@ -44,6 +43,6 @@ void debug(){
   // dist_measuring_debug();
   // Serial.print("counter: ");
   // Serial.print(counter);
-  Serial.print("drive_status: ");
-  Serial.println(drive_status);
+  // Serial.print("drive_status: ");
+  // Serial.println(drive_status);
 }

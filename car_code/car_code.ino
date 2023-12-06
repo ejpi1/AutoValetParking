@@ -17,6 +17,10 @@ AltSoftSerial hc05;         // RX:8, TX:9, 10번 pin에서 PWM 못씀! 그냥 �
 
 char serial_data; // Serial Monitor로부터 데이터 수신
 char drive_status; // 차를 움직이는 블루투스가 읽는 값
+char old_hc05_data = 0;
+char hc05_data;
+char old_hc06_data = 0;
+char hc06_data;
 float time_intvl, distance; // 초음파 센서 시간 간격, 거리
 uint16_t counter = 0;
 

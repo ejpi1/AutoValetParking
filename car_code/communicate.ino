@@ -1,12 +1,10 @@
 void communicate(){
   while(hc05.available()){
-    car_move = hc05.read();
-    // Serial.write(car_move);
+    drive(hc05.read());
   }
 
   while(hc06.available()){
-    car_move = hc06.read();
-    // Serial.write(car_move);
+    drive(hc06.read());
   }
 
   // while(Serial.available()){

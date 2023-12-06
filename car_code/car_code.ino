@@ -15,7 +15,7 @@ AltSoftSerial hc05;         // RX:8, TX:9, 10번 pin에서 PWM 못씀! 그냥 �
                             // AltSoftSerial은 write()에서 문제있음
 
 char serial_data; // Serial Monitor로부터 데이터 수신
-char car_move = 0; // 차를 움직이는 블루투스가 읽는 값
+char drive_status; // 차를 움직이는 블루투스가 읽는 값
 float time_intvl, distance; // 초음파 센서 시간 간격, 거리
 uint16_t counter = 0;
 
@@ -34,7 +34,6 @@ void setup(){
 }
 
 void loop() {
-  drive();
   communicate();
   // 주석 해제 시 거리 감지 제동 활성화
   us_stop();
@@ -45,6 +44,6 @@ void debug(){
   // dist_measuring_debug();
   // Serial.print("counter: ");
   // Serial.print(counter);
-  // Serial.print("car_move: ");
-  // Serial.println(car_move);
+  Serial.print("drive_status: ");
+  Serial.println(drive_status);
 }

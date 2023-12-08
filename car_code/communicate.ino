@@ -21,3 +21,11 @@ void communicate(){
   //   hc06.print(serial_data);
   // }
 }
+
+void emergency_stop() {
+  if (hc05_data == 'x') {
+    drive('x');               // 차량 정지
+    old_drive_status = 'x';   // 앞으로 움직이지 않도록
+    time_to_go = 0;           // stop_duration 사용
+  }
+}

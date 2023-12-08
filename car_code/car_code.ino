@@ -17,13 +17,19 @@ AltSoftSerial hc05;         // RX:8, TX:9, 10번 pin에서 PWM 못씀! 그냥 �
                             // AltSoftSerial은 write()에서 문제있음
 
 char serial_data; // Serial Monitor로부터 데이터 수신
-char drive_status; // 차를 움직이는 블루투스가 읽는 값
+char drive_status = 'x';    // drive()를 수행하는 값
 char old_hc05_data = 0;
 char hc05_data;
 char old_hc06_data = 0;
 char hc06_data;
 float time_intvl, distance; // 초음파 센서 시간 간격, 거리
-uint16_t counter = 0;
+
+uint8_t time_to_go = 0;
+char old_drive_status = 'x';
+
+uint32_t last_time = 0;         // millis()가 4바이트 정수임
+uint16_t stop_duration = 1000;  // 정지 시간 [ms]
+uint16_t move_duration = 300;   // 움직이는 시간 [ms]
 
 void setup(){
   pinMode(trig, OUTPUT);
@@ -41,6 +47,8 @@ void loop() {
   communicate();
   // 주석 해제 시 거리 감지 제동 활성화
   us_stop();
+  periodic_stop();
+  emergency_stop();
   debug();
 }
 

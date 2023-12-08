@@ -33,6 +33,5 @@ void drive(char car_move){               // 'a', 'd', 's', 'w'에 따라 차량 
     digitalWrite(IN3Pin, HIGH);
     digitalWrite(IN4Pin, HIGH);
   }
-  // 디버깅용
-  // drive_status = car_move;
+  drive_status = car_move;
 }

@@ -6,10 +6,11 @@
 #define IN2Pin 12       // LOW일 때 우륜 후진
 #define IN3Pin 10       // LOW일 때 좌륜 전진
 #define IN4Pin 7        // LOW일 때 좌륜 후진
-#define ENAPin 6       // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
+#define ENAPin 6        // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
 #define ENBPin 5        // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
 #define PWM_forward 100 // 전진, 후진 시 PWM
-#define PWM_turn 255    // 회전 시 PWM
+#define PWM_left 140    // 회전 시 좌륜 PWM, 일반적으로 좌륜에 더 많은 부하가 걸림
+#define PWM_right 120   // 회전 시 우륜 PWM
 
 SoftwareSerial hc06(2, 3);  // RX:2, TX:3
 AltSoftSerial hc05;         // RX:8, TX:9, 10번 pin에서 PWM 못씀! 그냥 입출력은 가능

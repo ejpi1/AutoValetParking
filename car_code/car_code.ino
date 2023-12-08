@@ -1,13 +1,13 @@
 #include <SoftwareSerial.h>
 #include <AltSoftSerial.h>
-#define trig 5
+#define trig 11
 #define echo 4
 #define IN1Pin 13       // LOW일 때 우륜 전진
 #define IN2Pin 12       // LOW일 때 우륜 후진
 #define IN3Pin 10       // LOW일 때 좌륜 전진
 #define IN4Pin 7        // LOW일 때 좌륜 후진
-#define ENAPin 11       // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
-#define ENBPin 6        // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
+#define ENAPin 6       // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
+#define ENBPin 5        // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
 #define PWM_forward 100 // 전진, 후진 시 PWM
 #define PWM_turn 255    // 회전 시 PWM
 

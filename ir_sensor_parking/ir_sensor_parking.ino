@@ -1,15 +1,24 @@
-int Sensor1 = 7;    // 
-int Sensor2 = 9;    // 센서핀은 9번에 연결
+int Sensor1 = 7;    
+int Sensor2 = 9;    
 int Sensor3 = 11;
-int val;
+//int Button = 13;
+//int val;
  
 void setup () {  
-  pinMode(Sensor1, INPUT);    // 센서값을 입력으로 설정
+  //Serial.begin(9600);
+  pinMode(Sensor1, INPUT);    
   pinMode(Sensor2, INPUT);
   pinMode(Sensor3, INPUT);
+  //pinMode(Button, INPUT_PULLUP); // 장애인 주차구역 스위치로 조정
 }
  
 void loop () {
+  //int buttonstate = digitalRead(Button);
+  //Serial.println(buttonstate);
+  //if (buttonstate == 0){
+  //  pinMode(Sensor3, INPUT);
+  //}
+  //delay(1);
   //val = digitalRead(Sensor);  // 센서값 읽어옴
  // if (val == HIGH) {          // 장애물 감지가 안되면
     //digitalWrite(led_red,LOW);                // 버저가 울리지 않는다

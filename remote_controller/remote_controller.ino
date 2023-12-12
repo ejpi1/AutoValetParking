@@ -86,7 +86,7 @@ void select_signal_park(){
   }else if(!digitalRead(green)){
 
   }else if(!digitalRead(white)){
-    signal = 'x';
+    signal = 'e';
   }else{
     signal = 0;
   }

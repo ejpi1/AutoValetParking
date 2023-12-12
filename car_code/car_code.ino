@@ -24,12 +24,14 @@ char old_hc06_data = 0;
 char hc06_data;
 float time_intvl, distance; // 초음파 센서 시간 간격, 거리
 
-uint8_t time_to_go;
+uint8_t time_to_go = 1;
 char old_drive_status = 'x';
 
-uint32_t last_time = 0;         // millis()가 4바이트 정수임
+uint32_t last_time;         // millis()가 4바이트 정수임
 uint16_t stop_duration = 1000;  // 정지 시간 [ms]
 uint16_t move_duration = 300;   // 움직이는 시간 [ms]
+
+uint8_t act = 1;                // 진행상황; 0: 초기, 1: 진입, 2: 회전, 3: 주차, 4: 출차, 5: 회전, 6: 탈출
 
 void setup(){
   pinMode(trig, OUTPUT);
@@ -45,17 +47,30 @@ void setup(){
 
 void loop() {
   communicate();
-  // 주석 해제 시 거리 감지 제동 활성화
-  us_stop();
-  periodic_stop();
-  emergency_stop();
   debug();
+  if(act == 0){
+    last_time = millis();
+  }else if(act == 1){
+    light_stop();
+    us_stop();
+    periodic_stop();
+  }else if(act == 2){
+    spin(950, 'l');
+    act += 1;
+    drive('w');
+    last_time = millis();
+  }else if(act == 3){
+    if(!us_stop()){
+      periodic_stop();
+    }
+    act += 1;
+  }
 }
 
 void debug(){
   // dist_measuring_debug();
-  // Serial.print("counter: ");
-  // Serial.print(counter);
   // Serial.print("drive_status: ");
   // Serial.println(drive_status);
+  // Serial.print("act: ");
+  // Serial.println(act);
 }

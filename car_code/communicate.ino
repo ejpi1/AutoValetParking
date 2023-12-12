@@ -2,10 +2,21 @@ void communicate(){
   while(hc05.available()){
     hc05_data = hc05.read();
     if(hc05_data != old_hc05_data){
-      drive(hc05_data);
+      if(hc05_data == 'i'){
+        act = 1;
+        drive('w');
+        hc06.write('h');
+      }else if(hc05_data == 'o'){
+        act = 4;
+        drive('s');
+      }else if(hc05_data == 'e'){
+        emergency_stop();
+      }else{
+        drive(hc05_data);
+      }
       old_hc05_data = hc05_data;
-      last_time = millis();
-      time_to_go = 1;
+      // last_time = millis();
+      // time_to_go = 1;
     }
   }
 
@@ -24,9 +35,9 @@ void communicate(){
   // }
 }
 
-void emergency_stop() {
-  if (hc05_data == 'x') {
-    drive('x');               // 차량 정지
-    no_periodic();
-  }
+void emergency_stop(){
+  drive('x');               // 차량 정지
+  no_periodic();
+  act = 0;
+  hc06.write('0');
 }

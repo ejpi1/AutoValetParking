@@ -35,3 +35,13 @@ void drive(char car_move){               // 'a', 'd', 's', 'w'에 따라 차량 
   }
   drive_status = car_move;
 }
+
+void spin(uint16_t spin_time, char direction){  // spin_time[ms]만큼 direction(r, l) 방향으로 회전
+  if(direction == 'r'){
+    drive('d');
+  }else if (direction == 'l'){
+    drive('a');
+  }
+  delay(spin_time);
+  drive('x');
+}

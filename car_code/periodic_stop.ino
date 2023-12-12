@@ -21,7 +21,7 @@ void periodic_stop(){
 }
 
 void no_periodic(){
-  old_drive_status = 0;             // 앞으로 움직이지 않도록
+  old_drive_status = 'x';           // 앞으로 움직이지 않도록
   time_to_go = 1;                   // 다음 이동을 위해 move_duration으로 저장
   old_hc05_data = 0;                // hc05 사용 준비
 }

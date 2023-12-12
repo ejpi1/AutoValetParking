@@ -24,7 +24,7 @@ char old_hc06_data = 0;
 char hc06_data;
 float time_intvl, distance; // 초음파 센서 시간 간격, 거리
 
-uint8_t time_to_go = 0;
+uint8_t time_to_go;
 char old_drive_status = 'x';
 
 uint32_t last_time = 0;         // millis()가 4바이트 정수임
@@ -36,7 +36,7 @@ void setup(){
   pinMode(echo, INPUT);
   Serial.begin(9600);
   hc06.begin(9600);
-  hc05.begin(9600); //
+  hc05.begin(9600);
   pinMode(IN1Pin, OUTPUT);  // 각 핀에 대한 출력값 설정
   pinMode(IN2Pin, OUTPUT);
   pinMode(IN3Pin, OUTPUT);

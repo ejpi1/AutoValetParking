@@ -30,7 +30,7 @@ uint32_t last_time;         // millis()가 4바이트 정수임
 uint16_t stop_duration = 1000;  // 정지 시간 [ms]
 uint16_t move_duration = 300;   // 움직이는 시간 [ms]
 
-uint8_t act = 1;                // 진행상황; 0: 초기, 1: 진입, 2: 회전, 3: 주차, 4: 출차, 5: 회전, 6: 탈출
+uint8_t act = 0;                // 진행상황; 0: 초기, 1: 진입, 2: 회전, 3: 주차, 4: 출차, 5: 회전, 6: 탈출
 
 void setup(){
   pinMode(trig, OUTPUT);
@@ -48,12 +48,13 @@ void loop() {
   communicate();
   debug();
   if(act == 0){
-    last_time = millis();
+
   }else if(act == 1){
     light_stop();
     us_stop();
     periodic_stop();
   }else if(act == 2){
+    move(100, 'f');
     move(950, 'l');
     act += 1;
     drive('w');
@@ -62,11 +63,16 @@ void loop() {
     us_stop();
     periodic_stop();
   }else if(act == 4){
-    ;
+    light_stop();
+    periodic_stop();
   }else if(act == 5){
-    ;
+    move(950, 'r');
+    act += 1;
+    drive('w');
+    last_time = millis();
   }else if(act == 6){
-    ;
+    us_stop();
+    periodic_stop();
   }
 }
 

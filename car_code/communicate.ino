@@ -6,9 +6,12 @@ void communicate(){
         act = 1;
         drive('w');
         hc06.write('h');
+        last_time = millis();
       }else if(hc05_data == 'o'){
         act = 4;
         drive('s');
+        hc06.write('h');
+        last_time = millis();
       }else if(hc05_data == 'e'){
         emergency_stop();
       }else{

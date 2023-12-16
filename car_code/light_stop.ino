@@ -6,5 +6,6 @@ void light_stop(){
     no_periodic();
     act += 1;
   }
-  Serial.println(lightpower);
+  // Serial.print("light: ");
+  // Serial.println(lightpower);
 }

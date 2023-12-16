@@ -36,7 +36,7 @@ void communicate(){
 }
 
 void emergency_stop(){
-  drive('x');               // 차량 정지
+  drive('x');           // 차량 정지
   no_periodic();
   act = 0;
   hc06.write('0');

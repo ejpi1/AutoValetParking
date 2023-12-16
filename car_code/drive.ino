@@ -1,4 +1,5 @@
-void drive(char car_move){               // 'a', 'd', 's', 'w'에 따라 차량 움직임
+void drive(char car_move){
+  // 'a', 'd', 's', 'w'에 따라 차량 움직임
   if(car_move == 'w'){
     analogWrite(ENAPin, PWM_forward);
     analogWrite(ENBPin, PWM_forward);
@@ -36,12 +37,18 @@ void drive(char car_move){               // 'a', 'd', 's', 'w'에 따라 차량 
   drive_status = car_move;
 }
 
-void spin(uint16_t spin_time, char direction){  // spin_time[ms]만큼 direction(r, l) 방향으로 회전
+void move(uint16_t move_time, char direction){
+  // move_time[ms]만큼 direction(r, l) 방향으로 회전 또는 direction(f, b) 방향으로 전후진
+  // drive와는 다르게 일시적인 움직임 후 정지
   if(direction == 'r'){
     drive('d');
-  }else if (direction == 'l'){
+  }else if(direction == 'l'){
     drive('a');
+  }else if(direction == 'f'){
+    drive('w');
+  }else if(direction == 'b'){
+    drive('s');
   }
-  delay(spin_time);
+  delay(move_time);
   drive('x');
 }

@@ -22,7 +22,6 @@ char old_hc05_data = 0;
 char hc05_data;
 char old_hc06_data = 0;
 char hc06_data;
-float time_intvl, distance; // 초음파 센서 시간 간격, 거리
 
 uint8_t time_to_go = 1;
 char old_drive_status = 'x';
@@ -55,15 +54,19 @@ void loop() {
     us_stop();
     periodic_stop();
   }else if(act == 2){
-    spin(950, 'l');
+    move(950, 'l');
     act += 1;
     drive('w');
     last_time = millis();
   }else if(act == 3){
-    if(!us_stop()){
-      periodic_stop();
-    }
-    act += 1;
+    us_stop();
+    periodic_stop();
+  }else if(act == 4){
+    ;
+  }else if(act == 5){
+    ;
+  }else if(act == 6){
+    ;
   }
 }
 

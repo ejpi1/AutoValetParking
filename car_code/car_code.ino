@@ -9,8 +9,8 @@
 #define ENAPin 6        // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
 #define ENBPin 5        // PWM 가능한 pin (11, 10, 9, 6, 5, 3)
 #define PWM_forward 100 // 전진, 후진 시 PWM
-#define PWM_left 140    // 회전 시 좌륜 PWM, 일반적으로 좌륜에 더 많은 부하가 걸림
-#define PWM_right 120   // 회전 시 우륜 PWM
+#define PWM_left 200    // 회전 시 좌륜 PWM, 일반적으로 좌륜에 더 많은 부하가 걸림
+#define PWM_right 180   // 회전 시 우륜 PWM
 
 SoftwareSerial hc06(2, 3);  // RX:2, TX:3
 AltSoftSerial hc05;         // RX:8, TX:9, 10번 pin에서 PWM 못씀! 그냥 입출력은 가능
@@ -54,8 +54,8 @@ void loop() {
     us_stop();
     periodic_stop();
   }else if(act == 2){
-    move(100, 'f');
-    move(950, 'l');
+    move(370, 'f');
+    move(600, 'l');
     act += 1;
     drive('w');
     last_time = millis();
@@ -63,10 +63,12 @@ void loop() {
     us_stop();
     periodic_stop();
   }else if(act == 4){
+    delay(150);
     light_stop();
     periodic_stop();
   }else if(act == 5){
-    move(950, 'r');
+    move(350,'f');
+    move(570, 'r');
     act += 1;
     drive('w');
     last_time = millis();

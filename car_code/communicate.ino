@@ -10,6 +10,7 @@ void communicate(){
       }else if(hc05_data == 'o'){
         act = 4;
         drive('s');
+        delay(150);
         hc06.write('h');
         last_time = millis();
       }else if(hc05_data == 'e'){

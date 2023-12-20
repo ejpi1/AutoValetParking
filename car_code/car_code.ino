@@ -63,7 +63,6 @@ void loop() {
     us_stop();
     periodic_stop();
   }else if(act == 4){
-    delay(150);
     light_stop();
     periodic_stop();
   }else if(act == 5){

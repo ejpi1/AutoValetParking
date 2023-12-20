@@ -54,8 +54,8 @@ void loop() {
     us_stop();
     periodic_stop();
   }else if(act == 2){
-    move(370, 'f');
-    move(600, 'l');
+    move(425, 'f');
+    move(650, 'l');
     act += 1;
     drive('w');
     last_time = millis();
@@ -68,7 +68,7 @@ void loop() {
     periodic_stop();
   }else if(act == 5){
     move(350,'f');
-    move(570, 'r');
+    move(600, 'r');
     act += 1;
     drive('w');
     last_time = millis();
